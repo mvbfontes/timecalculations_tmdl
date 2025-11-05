@@ -1,0 +1,287 @@
+createOrReplace
+
+	table 'Time Intelligence'
+
+		calculationGroup
+			precedence: 1
+
+			calculationItem Current = SELECTEDMEASURE()
+
+			calculationItem YTD =
+					CALCULATE (
+					    SELECTEDMEASURE (),
+					    DATESYTD ( 'DimData'[Data] )
+					)
+
+			calculationItem QTD =
+					
+					CALCULATE (
+					    SELECTEDMEASURE (),
+					    DATESQTD ( 'DimData'[Data] )
+					)
+
+			calculationItem MTD =
+					CALCULATE (
+					    SELECTEDMEASURE (),
+					    DATESMTD ( 'DimData'[Data] )
+					)
+
+			calculationItem MAT =
+					CALCULATE (
+					    SELECTEDMEASURE (),
+					    DATESINPERIOD (
+					        'DimData'[Data],
+					        LASTDATE ( 'DimData'[Data] ),
+					        -12,
+					        MONTH
+					    )
+					)
+
+			calculationItem PM =
+					CALCULATE (
+					    SELECTEDMEASURE (),
+					    PREVIOUSMONTH ( 'DimData'[Data] )
+					)
+
+			calculationItem PQ =
+					CALCULATE (
+					    SELECTEDMEASURE (),
+					    PREVIOUSQUARTER ( 'DimData'[Data] )
+					)
+
+			calculationItem PY =
+					
+					CALCULATE (
+					    SELECTEDMEASURE (),
+					    SAMEPERIODLASTYEAR ( 'DimData'[Data] )
+					)
+
+			calculationItem PYTD =
+					
+					CALCULATE (
+					    SELECTEDMEASURE (),
+					    DATESYTD (
+					    DATEADD ( 'DimData'[Data], -1, YEAR )
+					)
+					)
+
+			calculationItem PQTD =
+					
+					CALCULATE (
+					    SELECTEDMEASURE (),
+						DATESQTD (
+					    DATEADD ( 'DimData'[Data], -1, QUARTER )
+						)
+					)
+
+			calculationItem PMTD =
+					
+					CALCULATE (
+					    SELECTEDMEASURE (),
+					    DATESMTD (
+					    DATEADD ( 'DimData'[Data], -1, MONTH )
+					)
+					)
+
+			calculationItem YOY% =
+					
+					DIVIDE (
+					    CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "YOY"
+					    ),
+					    CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "PY"
+					    )
+					) -1
+
+				formatStringDefinition = "#,##0.00%"
+
+			calculationItem YOY =
+					
+					SELECTEDMEASURE ()
+					    - CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time intelligence'[Show as] = "PY"
+					    )
+
+			calculationItem QOQ% =
+					
+					DIVIDE (
+					    CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "QOQ"
+					    ),
+					    CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "PQ"
+					    )
+					) -1
+
+				formatStringDefinition = "#,##0.00%"
+
+			calculationItem QOQ =
+					
+					SELECTEDMEASURE ()
+					    - CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "PQ"
+					    )
+
+			calculationItem MOM% =
+					
+					DIVIDE (
+					    CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "MOM"
+					    ),
+					    CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "PM"
+					    )
+					) -1
+
+				formatStringDefinition = "#,##0.00%"
+
+			calculationItem MOM =
+					
+					SELECTEDMEASURE ()
+					    - CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "PM"
+					    )
+
+			calculationItem YOYTD% =
+					
+							DIVIDE (
+					    	CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "YTD"
+					    	),
+					    	CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "PYTD"
+					   			)
+							) -1
+
+				formatStringDefinition = "#,##0.00%"
+
+			calculationItem YOYTD =
+					
+						CALCULATE (
+					    SELECTEDMEASURE (),
+					    'Time Intelligence'[Show as] = "YTD"
+						)
+					    - CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "PYTD"
+					    )
+
+			calculationItem QOQTD% =
+					
+							DIVIDE (
+					    	CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "QTD"
+					   		 ),
+					    	CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "PQTD"
+					    		)
+							) -1
+
+				formatStringDefinition = "#,##0.00%"
+
+			calculationItem QOQTD =
+					
+						CALCULATE (
+					    SELECTEDMEASURE (),
+					    'Time Intelligence'[Show as] = "QTD"
+						)
+					    - CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "PQTD"
+					    )
+
+			calculationItem MOMTD% =
+					
+							DIVIDE (
+					    	CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "MTD"
+					    	),
+					    	CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "PMTD"
+					    		)
+							) -1
+
+				formatStringDefinition = "#,##0.00%"
+
+			calculationItem MOMTD =
+					
+						CALCULATE (
+					    SELECTEDMEASURE (),
+					    'Time Intelligence'[Show as] = "MTD"
+						)
+					    - CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "PMTD"
+					    )
+
+			calculationItem PYMAT =
+					
+									VAR CurrentDate = MAX ( 'DimData'[Data] )
+									VAR PYEndDate = DATE ( YEAR ( CurrentDate ) - 1, MONTH ( CurrentDate ), DAY ( CurrentDate ) )
+									RETURN
+					    				CALCULATE (
+					        				SELECTEDMEASURE (),
+					        				DATESINPERIOD (
+					            				'DimData'[Data],
+					            				PYEndDate,
+					            				-12,
+					            				MONTH
+					        				)
+					    				)
+
+			calculationItem MATG% =
+					
+							DIVIDE (
+					    		CALCULATE (
+					        	SELECTEDMEASURE (),
+					        	'Time Intelligence'[Show as] = "MAT"
+					    		),
+					    		CALCULATE (
+					        	SELECTEDMEASURE (),
+					        	'Time Intelligence'[Show as] = "PYMAT"
+					   			 )
+								) -1
+
+				formatStringDefinition = "#,##0.00%"
+
+			calculationItem MATG =
+					
+						CALCULATE (
+					    SELECTEDMEASURE (),
+					    'Time Intelligence'[Show as] = "MAT"
+						)
+					    - CALCULATE (
+					        SELECTEDMEASURE (),
+					        'Time Intelligence'[Show as] = "PYMAT"
+					    )
+
+		column 'Show as'
+			dataType: string
+			lineageTag: da4b9dbf-64d0-407f-94da-17f61862f26e
+			summarizeBy: none
+			sourceColumn: Name
+			sortByColumn: Ordinal
+
+		column Ordinal
+			dataType: int64
+			formatString: 0
+			lineageTag: a955905a-9a03-4619-83a4-c34e0253b857
+			summarizeBy: sum
+			sourceColumn: Ordinal
+
