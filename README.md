@@ -7,7 +7,7 @@ Como utilizar:
 1. Abra o Power BI Desktop: crie um novo relatório em branco ou abra um relatório existente;
 2. No menu à esquerda, clique na aba "Model view";
 3. Do lado direito na janela "Dados", clique na opção "Modelo";
-4. Clique no nome "Modelo semântico" e na janela de "Propriedades" que irá se abrir, habilite a opção "Desestimular medidas implícitas";
+4. Clique no nome "Modelo semântico" e na janela de "Propriedades" que irá se abrir, habilite a opção "Desestimular medidas implícitas" - esta etapa é necessária para habilitar a criação de calculation groups no modelo;
 5. No menu à esquerda, clique em TMDL View — é a exibição de código do modelo;
 6. É necessário ter uma dimensão de data no arquivo para o script funcionar corretamente. Caso seu relatório não tenha uma, utilize a dimensão de data que está neste repositório do Github (https://github.com/mvbfontes/dimensao_data_brasil);
 7. Abra o arquivo "Script Time Intelligence.tmdl" (disponível neste repositório do Github) e clique no ícone de copiar no canto superior direito;
