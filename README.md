@@ -15,7 +15,8 @@ Como utilizar:
 <br><br>
 <img width="645" height="322" alt="image" src="https://github.com/user-attachments/assets/7b0b5b52-1e30-4032-aaae-15c2138eef6a" />
 <br><br>
-9. Clique em "Aplicar" no canto superior esquerdo. Isso vai criar o calculation group "Time Intelligence" automaticamente;
-10. Depois, clique em "Atualizar agora" para carregar os dados;
+9. Clique em "Aplicar" no canto superior esquerdo. Isso vai criar o calculation group "Time Intelligence" automaticamente; <br>
+10. Depois, clique em "Atualizar agora" para carregar os dados; <br>
+11. Confira a tabela "Time Intelligence" criada e atualizada na aba "Table view".
 
 
