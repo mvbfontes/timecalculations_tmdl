@@ -18,6 +18,8 @@ Como utilizar:
 <br><br>
 10. Clique em "Aplicar" no canto superior esquerdo. Isso vai criar o calculation group "Time Intelligence" automaticamente; <br>
 11. Depois, clique em "Atualizar agora" para carregar os dados; <br>
-12. Confira a tabela "Time Intelligence" criada e atualizada na aba "Table view".
+12. Confira a tabela "Time Intelligence" criada e atualizada na aba "Table view".<br><br>
+
+Se preferir, confira o vídeo com a explicação: https://youtu.be/OS6VBKTa9aA?si=F1VOpje8ACy3e68_
 
 
